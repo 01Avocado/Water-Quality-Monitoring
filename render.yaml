@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: neerwana-realtime-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn ml_backend.realtime.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: .
+      - key: REALTIME_OUTPUT_PATH
+        value: ml_backend/realtime/latest_output.json
+  - type: worker
+    name: neerwana-realtime-worker
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m ml_backend.realtime.run_worker
+    envVars:
+      - key: PYTHONPATH
+        value: .
+      - key: REALTIME_OUTPUT_PATH
+        value: ml_backend/realtime/latest_output.json
+
