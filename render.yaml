@@ -3,6 +3,7 @@ services:
     name: neerwana-realtime-api
     env: python
     plan: free
+    pythonVersion: 3.11.7
     buildCommand: pip install -r requirements.txt
     startCommand: bash -c "python -m ml_backend.realtime.run_worker & uvicorn ml_backend.realtime.app:app --host 0.0.0.0 --port $PORT"
     envVars:
