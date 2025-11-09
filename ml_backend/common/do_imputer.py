@@ -32,6 +32,12 @@ from typing import Iterable, List, Mapping, Optional, Sequence
 import joblib
 import numpy as np
 import pandas as pd
+
+# Ensure scikit-learn private modules referenced in the pickle are registered.
+try:  # pragma: no cover - optional dependency import for pickle compatibility
+    from sklearn.metrics import _loss  # noqa: F401
+except ImportError:  # pragma: no cover
+    _loss = None
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_absolute_error, r2_score
