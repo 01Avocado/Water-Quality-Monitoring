@@ -1,6 +1,6 @@
 class WaterQualityDashboard {
     constructor(options = {}) {
-        this.dataUrl = options.dataUrl || '../ml_backend/realtime/latest_output.json';
+        this.dataUrl = options.dataUrl || '/api/latest';
         this.refreshInterval = options.refreshInterval || 60000;
         this.autoRefreshId = null;
         this.lastData = null;
