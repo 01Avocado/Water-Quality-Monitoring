@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neervana Water Quality Monitor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="assets/logo.jpeg" alt="Neervana logo" class="brand-logo">
+                    <div class="brand-text">
+                        <h1>Neervana Monitor</h1>
+                        <span class="brand-tagline">Real-time Water Quality Intelligence</span>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <span class="last-updated">Last Updated: <span id="lastUpdate">--</span></span>
+                    <div class="connection-status" id="connectionStatus">
+                        <i class="fas fa-circle"></i>
+                        <span id="connectionStatusText">Connecting</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <section class="status-overview">
+                <div class="status-card safe" id="waterStatusCard">
+                    <div class="status-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="status-content">
+                        <h2 id="waterStatus">Water is Safe</h2>
+                        <p id="statusDescription">All parameters within normal range.</p>
+                        <div class="status-confidence">
+                            <span>Confidence: <strong id="confidence">--</strong></span>
+                        </div>
+                        <div class="status-meta">
+                            <div class="status-item">
+                                <span class="status-label">WQI Score</span>
+                                <span class="status-value" id="wqiScore">--</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Pollution Level</span>
+                                <span class="status-value" id="pollutionLevel">Safe</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">DO Sensor</span>
+                                <span class="status-value" id="doStatus">Live</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-grid">
+                <div class="insight-card safe" id="contaminationCard">
+                    <div class="insight-header">
+                        <i class="fas fa-biohazard"></i>
+                        <h3>Contamination Watch</h3>
+                    </div>
+                    <div class="insight-body">
+                        <p class="insight-value" id="contaminationType">Safe</p>
+                        <p class="insight-detail">Confidence: <span id="contaminationConfidence">--</span></p>
+                        <p class="insight-note" id="contaminationNote">No contamination detected.</p>
+                    </div>
+                </div>
+                <div class="insight-card safe" id="diseaseCard">
+                    <div class="insight-header">
+                        <i class="fas fa-virus"></i>
+                        <h3>Disease Risk</h3>
+                    </div>
+                    <div class="insight-body">
+                        <p class="insight-value" id="diseasePrediction">No Disease</p>
+                        <p class="insight-detail">Confidence: <span id="diseaseConfidence">--</span></p>
+                        <p class="insight-note" id="diseaseNote">Waterborne disease risk is minimal.</p>
+                    </div>
+                </div>
+                <div class="insight-card warning" id="forecastCard">
+                    <div class="insight-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Degradation Outlook</h3>
+                    </div>
+                    <div class="insight-body">
+                        <p class="insight-value" id="forecastStatus">Monitoring</p>
+                        <p class="insight-detail">Time To Unsafe: <span id="forecastTimeToUnsafe">--</span></p>
+                        <p class="insight-note" id="forecastNote">Forecast data will appear once available.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="alerts-section" id="alertsSection" style="display: none;">
+                <div class="alert-card critical" id="contaminationAlert">
+                    <div class="alert-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Water Contamination Detected</h3>
+                        <span class="alert-time" id="alertTime">Just now</span>
+                    </div>
+                    <div class="alert-content">
+                        <p class="alert-cause" id="contaminationCause">Contamination</p>
+                        <p class="alert-details" id="alertDetails">Elevated levels detected. Immediate action required.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="forecast-section" id="forecastSection" style="display: none;">
+                <div class="forecast-card warning">
+                    <div class="forecast-header">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Quality Degradation Forecast</h3>
+                    </div>
+                    <div class="forecast-content">
+                        <p class="forecast-summary" id="forecastSummaryText">Forecast details will appear when available.</p>
+                        <div class="forecast-timeline" id="forecastTimeline"></div>
+                        <div class="forecast-chart">
+                            <div class="chart-bar">
+                                <div class="chart-fill" id="forecastChartFill" style="width: 0%"></div>
+                            </div>
+                            <span class="chart-label" id="forecastChartLabel">Quality Index: --</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sensor-metrics">
+                <h2 class="section-title">Sensor Readings</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <i class="fas fa-flask"></i>
+                            <h3>pH Level</h3>
+                        </div>
+                        <div class="metric-value" id="phValue">--</div>
+                        <div class="metric-status good">Normal</div>
+                        <div class="metric-range">Range: 6.5 - 8.5</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <i class="fas fa-microscope"></i>
+                            <h3>TDS</h3>
+                        </div>
+                        <div class="metric-value" id="tdsValue">--</div>
+                        <div class="metric-unit">ppm</div>
+                        <div class="metric-status good">Normal</div>
+                        <div class="metric-range">Range: 50 - 500 ppm</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <i class="fas fa-eye"></i>
+                            <h3>Turbidity</h3>
+                        </div>
+                        <div class="metric-value" id="turbidityValue">--</div>
+                        <div class="metric-unit">NTU</div>
+                        <div class="metric-status good">Normal</div>
+                        <div class="metric-range">Range: 0 - 5 NTU</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <i class="fas fa-wind"></i>
+                            <h3>Dissolved Oxygen</h3>
+                        </div>
+                        <div class="metric-value" id="doValue">--</div>
+                        <div class="metric-unit">mg/L</div>
+                        <div class="metric-status good">Normal</div>
+                        <div class="metric-range">Range: 6 - 10 mg/L</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <i class="fas fa-thermometer-half"></i>
+                            <h3>Temperature</h3>
+                        </div>
+                        <div class="metric-value" id="tempValue">--</div>
+                        <div class="metric-unit">°C</div>
+                        <div class="metric-status good">Normal</div>
+                        <div class="metric-range">Range: 15 - 30°C</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2 class="section-title">Water Quality Trends</h2>
+                <div class="chart-container">
+                    <canvas id="qualityChart" width="800" height="400"></canvas>
+                    <p class="empty-state" id="chartEmptyState" style="display: none;">
+                        Forecast data will appear once the degradation model is enabled.
+                    </p>
+                </div>
+            </section>
+
+            <section class="system-info">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>System Status</h3>
+                        <div class="info-item">
+                            <span class="info-label">Model Status:</span>
+                            <span class="info-value active" id="modelStatusValue">Active</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last Training:</span>
+                            <span class="info-value" id="lastTrainingValue">n/a</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Accuracy:</span>
+                            <span class="info-value" id="overallAccuracyValue">--</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Monitoring Details</h3>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value" id="monitoringLocation">ThingSpeak Channel</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Sensors:</span>
+                            <span class="info-value" id="sensorStatus">4 Live + DO (imputed)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Update Frequency:</span>
+                            <span class="info-value" id="updateFrequency">Every 5 minutes</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ThingSpeak Channel:</span>
+                            <span class="info-value" id="thingspeakChannel">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last Data Pull:</span>
+                            <span class="info-value" id="infoLastUpdate">--</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="dashboard-footer">
+            <p>&copy; 2025 Neervana Water Quality Monitoring System</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
