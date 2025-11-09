@@ -35,7 +35,9 @@ class RealtimePipeline:
         self.last_entry_id: Optional[int] = None
 
     def run_once(self) -> Optional[Dict[str, object]]:
+        logger.info("Fetching latest ThingSpeak feed...")
         payload = self.client.fetch_latest(results=1)
+        logger.debug("Raw ThingSpeak payload: %s", payload)
         feeds = payload.get("feeds") or []
         if not feeds:
             logger.warning("ThingSpeak returned no feeds.")
@@ -52,9 +54,27 @@ class RealtimePipeline:
             logger.warning("Feed entry lacked required sensor values, skipping.")
             return None
 
+        logger.info(
+            "Normalized reading: timestamp=%s pH=%.3f Temp=%.3f TDS=%.3f DO=%s",
+            normalized.timestamp,
+            normalized.pH,
+            normalized.temperature,
+            normalized.tds,
+            f"{normalized.dissolved_oxygen:.3f}" if normalized.dissolved_oxygen is not None else "None",
+        )
+
         results = self.models.predict(normalized)
         results["raw_channel"] = payload.get("channel", {})
         results["raw_feed"] = latest
+
+        logger.info(
+            "Model outputs -> WQI: %s | Pollution: %s | Contamination: %s | Disease: %s | DO_imputed: %s",
+            results.get("wqi", {}),
+            results.get("wqi", {}).get("pollution_level"),
+            results.get("contamination", {}).get("contamination_type"),
+            results.get("disease", {}).get("predicted_disease"),
+            results.get("sensor_values", {}).get("DO_imputed") if results.get("sensor_values") else "N/A",
+        )
         self._persist(results)
 
         self.last_entry_id = entry_id
