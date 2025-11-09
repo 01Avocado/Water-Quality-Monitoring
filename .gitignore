@@ -15,6 +15,7 @@ __pycache__/
 *.jpeg
 *.h5
 *.pkl
+!ml_backend/common/do_imputer.pkl
 
 # Allow repository-specific assets
 !frontend/assets/logo.jpeg
