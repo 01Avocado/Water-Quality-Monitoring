@@ -1,0 +1,33 @@
+CONTAMINATION DETECTION MODEL - PERFORMANCE REPORT
+======================================================================
+
+Dataset Size: 5000 samples
+Train Set: 4000 samples
+Test Set: 1000 samples
+
+Cross-Validation Accuracy: 0.9705 (+/- 0.0111)
+Out-of-Bag Score: 0.9712
+Test Accuracy: 0.9770
+
+CLASSIFICATION REPORT
+======================================================================
+                    precision    recall  f1-score   support
+
+chemical_detergent       0.97      0.95      0.96       150
+  microbial_sewage       0.98      0.99      0.98       150
+  natural_sediment       0.95      0.97      0.96       150
+    pipe_corrosion       0.96      0.97      0.97       150
+              safe       0.99      0.99      0.99       400
+
+          accuracy                           0.98      1000
+         macro avg       0.97      0.97      0.97      1000
+      weighted avg       0.98      0.98      0.98      1000
+
+
+FEATURE IMPORTANCE
+======================================================================
+turbidity_ntu: 0.3583
+tds_mg/l: 0.2493
+do_mg/l: 0.1932
+pH: 0.1870
+temperature_c: 0.0122

@@ -1,0 +1,36 @@
+======================================================================
+WQI MODEL PERFORMANCE SUMMARY
+======================================================================
+
+Model Configuration:
+  - Algorithm: Random Forest Classifier
+  - Features: pH, Turbidity, TDS, DO, Temperature + WQI Score
+  - WHO-based WQI weights applied
+  - Anti-overfitting measures enabled
+
+WHO Weights:
+  - pH: 0.25
+  - Turbidity: 0.20
+  - TDS: 0.20
+  - DO: 0.25
+  - Temperature: 0.10
+
+Test Set Performance:
+  - Accuracy: 0.8667
+  - Precision: 0.8960
+  - Recall: 0.8667
+  - F1-score: 0.8600
+
+Feature Importance:
+  1. Turbidity: 0.4240
+  2. pH: 0.1702
+  3. DO: 0.1474
+  4. Temperature: 0.1195
+  5. WQI_Score: 0.1141
+  6. TDS: 0.0247
+
+Model Characteristics:
+  - Designed for real-time sensor data
+  - Robust to class imbalance
+  - Production-ready
+  - Validated with cross-validation

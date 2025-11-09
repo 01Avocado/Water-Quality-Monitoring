@@ -1,0 +1,23 @@
+.env
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Large datasets and artefacts
+*.csv
+*.xls
+*.xlsx
+*.png
+*.jpg
+*.jpeg
+*.h5
+*.pkl
+
+# Allow repository-specific assets
+!frontend/assets/logo.jpeg
+
+.DS_Store
+

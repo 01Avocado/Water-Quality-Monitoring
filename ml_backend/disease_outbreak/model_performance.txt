@@ -1,0 +1,26 @@
+======================================================================
+IMPROVED DISEASE OUTBREAK PREDICTION - PERFORMANCE
+======================================================================
+
+Improvements Applied:
+  1. SMOTE class balancing
+  2. Feature engineering (10 total features)
+  3. Better hyperparameters (max_depth=10)
+
+Test Set Performance:
+  - Accuracy: 0.5375
+  - Precision: 0.5368
+  - Recall: 0.5375
+  - F1-score: 0.5286
+
+Top 10 Feature Importance:
+  1. TDS: 0.1379
+  2. Temperature: 0.1255
+  3. DO_deficit: 0.1028
+  4. pH: 0.1007
+  5. Turb_TDS_interaction: 0.0994
+  6. DO: 0.0994
+  7. Turbidity: 0.0954
+  8. WQ_composite: 0.0880
+  9. pH_deviation: 0.0851
+  10. Temp_stress: 0.0659

@@ -1,0 +1,25 @@
+======================================================================
+DEGRADATION FORECASTING MODEL - PERFORMANCE SUMMARY
+======================================================================
+
+Training Date: 2025-10-09 14:03:40
+
+Model Configuration:
+  - Architecture: Bidirectional LSTM
+  - Input: 4 timesteps (12 hours) × 5 features
+  - Output: 4 WQI predictions (next 12 hours)
+  - Features: pH, Turbidity, TDS, DO, Temperature
+  - Sensors: 3-hour intervals
+
+Dataset Information:
+  - Total sequences: 16083
+  - Training: 11258 sequences
+  - Validation: 2412 sequences
+  - Test: 2413 sequences
+  - Time range: 2010-05-27 00:00:00 to 2021-11-22 21:00:00
+
+Performance Metrics:
+  - Train MAE: 0.728 WQI points
+  - Val MAE: 0.731 WQI points
+  - Test MAE: 0.630 WQI points
+  - Overfitting gap: -13.4%

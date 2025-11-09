@@ -1,0 +1,24 @@
+WQI DATASET PREPARATION SUMMARY
+======================================================================
+
+Dataset Information:
+  - Total samples: 1050
+  - Features: pH, Turbidity, TDS, DO, Temperature
+  - Target: Pollution_Level
+
+Class Distribution:
+  - safe: 350 (33.3%)
+  - degrading: 350 (33.3%)
+  - unsafe: 350 (33.3%)
+
+Feature Statistics:
+  - pH: 5.50 - 9.00 (mean: 7.40)
+  - Turbidity: 0.54 - 20.00 (mean: 6.30)
+  - TDS: 100.00 - 1500.00 (mean: 944.87)
+  - DO: 2.00 - 10.32 (mean: 6.83)
+  - Temperature: 15.00 - 35.00 (mean: 23.62)
+
+TDS Synthesis:
+  - Method: Synthesized using conductivity from unlabeled dataset
+  - Conversion: TDS = 0.6 * Conductivity (umhos/cm to mg/L)
+  - Variation: Added realistic variation based on pollution level
