@@ -613,7 +613,7 @@ class WaterQualityDashboard {
 
 document.addEventListener('DOMContentLoaded', () => {
     const dashboard = new WaterQualityDashboard({
-        dataUrl: window.DASHBOARD_DATA_URL || '../ml_backend/realtime/latest_output.json',
+        dataUrl: window.DASHBOARD_DATA_URL || '/api/latest',
         refreshInterval: window.DASHBOARD_REFRESH_INTERVAL || 60_000,
     });
     window.waterQualityDashboard = dashboard;
