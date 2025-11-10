@@ -17,6 +17,8 @@ __pycache__/
 *.h5
 *.pkl
 !ml_backend/common/do_imputer.pkl
+!ml_backend/wqi/wqi_model.pkl
+!ml_backend/wqi/wqi_scaler.pkl
 
 # Allow repository-specific assets
 !frontend/assets/logo.jpeg
