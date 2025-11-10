@@ -20,6 +20,10 @@ __pycache__/
 !ml_backend/wqi/wqi_model.pkl
 !ml_backend/wqi/wqi_scaler.pkl
 !ml_backend/wqi/wqi_config.pkl
+!ml_backend/contamination_detection/contamination_model.pkl
+!ml_backend/contamination_detection/contamination_scaler.pkl
+!ml_backend/contamination_detection/imputer.pkl
+!ml_backend/contamination_detection/label_encoder.pkl
 
 # Allow repository-specific assets
 !frontend/assets/logo.jpeg
