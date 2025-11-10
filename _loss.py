@@ -10,9 +10,13 @@ within scikit-learn.
 """
 
 try:
-    from sklearn._loss import *  # type: ignore # noqa: F401,F403
+    # Newer scikit-learn versions expose compiled losses under sklearn._loss._loss
+    from sklearn._loss._loss import *  # type: ignore # noqa: F401,F403
 except ImportError:  # pragma: no cover
-    # Fallback for environments where the private module was moved.
-    from sklearn.metrics._loss import *  # type: ignore # noqa: F401,F403
+    try:
+        from sklearn._loss import *  # type: ignore # noqa: F401,F403
+    except ImportError:
+        # Fallback for very old builds.
+        from sklearn.metrics._loss import *  # type: ignore # noqa: F401,F403
 
 
