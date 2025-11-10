@@ -24,6 +24,14 @@ __pycache__/
 !ml_backend/contamination_detection/contamination_scaler.pkl
 !ml_backend/contamination_detection/imputer.pkl
 !ml_backend/contamination_detection/label_encoder.pkl
+!ml_backend/disease_outbreak/disease_model.pkl
+!ml_backend/disease_outbreak/disease_scaler.pkl
+!ml_backend/disease_outbreak/feature_names_improved.pkl
+!ml_backend/disease_outbreak/disease_config.pkl
+!ml_backend/degradation_forecasting/degradation_model.h5
+!ml_backend/degradation_forecasting/degradation_scaler.pkl
+!ml_backend/degradation_forecasting/degradation_config.pkl
+!ml_backend/degradation_forecasting/best_degradation_model.h5
 
 # Allow repository-specific assets
 !frontend/assets/logo.jpeg
