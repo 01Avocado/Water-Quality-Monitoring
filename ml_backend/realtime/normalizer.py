@@ -90,6 +90,6 @@ class SensorNormalizer:
         if conductivity is None:
             # Fall back to a conservative default range if conductivity missing
             return 450.0
-        return max(conductivity * self.config.conductivity_to_tds_factor, 0.0)
+        return max(conductivity, 0.0)
 
 
