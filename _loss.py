@@ -9,6 +9,10 @@ targets, we expose that name and delegate to the canonical implementation
 within scikit-learn.
 """
 
-from sklearn.metrics._loss import *  # type: ignore # noqa: F401,F403
+try:
+    from sklearn._loss import *  # type: ignore # noqa: F401,F403
+except ImportError:  # pragma: no cover
+    # Fallback for environments where the private module was moved.
+    from sklearn.metrics._loss import *  # type: ignore # noqa: F401,F403
 
 
