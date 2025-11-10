@@ -39,7 +39,7 @@ class DegradationPredictor:
         print("\n[INIT] Loading model components...")
         
         # Load model
-        self.model = tf.keras.models.load_model(model_path)
+        self.model = tf.keras.models.load_model(model_path, compile=False)
         print(f"[OK] Model loaded from: {model_path}")
         
         # Load scaler
