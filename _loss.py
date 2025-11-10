@@ -9,14 +9,26 @@ targets, we expose that name and delegate to the canonical implementation
 within scikit-learn.
 """
 
-try:
-    # Newer scikit-learn versions expose compiled losses under sklearn._loss._loss
-    from sklearn._loss._loss import *  # type: ignore # noqa: F401,F403
-except ImportError:  # pragma: no cover
+import importlib
+
+
+def _expose(module_name: str) -> bool:
     try:
-        from sklearn._loss import *  # type: ignore # noqa: F401,F403
+        module = importlib.import_module(module_name)
     except ImportError:
-        # Fallback for very old builds.
-        from sklearn.metrics._loss import *  # type: ignore # noqa: F401,F403
+        return False
+
+    for name in dir(module):
+        if not name.startswith("_"):
+            globals()[name] = getattr(module, name)
+    return True
+
+
+if not (
+    _expose("sklearn._loss._loss")
+    or _expose("sklearn._loss")
+    or _expose("sklearn.metrics._loss")
+):
+    raise ImportError("Unable to expose scikit-learn loss functions for legacy pickle compatibility.")
 
 
